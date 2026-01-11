@@ -1,26 +1,61 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --glass: rgba(255, 255, 255, 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background: #02101f;
 }
+
+/* nicer selection */
+::selection {
+  background: rgba(120, 255, 240, 0.25);
+}
+
+/* small “aqua glass” defaults */
+.bg-white\/4 { background-color: rgba(255,255,255,0.04); }
+.bg-white\/6 { background-color: rgba(255,255,255,0.06); }
+
+/* mode-specific tweaks */
+html[data-mode="recruiter"] * {
+  scroll-behavior: smooth;
+}
+
+html[data-mode="Deep Dive"] .showoff-glow {
+  filter: drop-shadow(0 0 22px rgba(120, 255, 240, 0.25));
+}
+@keyframes jellyFloatVertical {
+  0% {
+    transform: translate3d(-8vw, 75vh, 0) scale(0.95) rotate(-4deg);
+  }
+  50% {
+    transform: translate3d(4vw, 10vh, 0) scale(1.05) rotate(3deg);
+  }
+  100% {
+    transform: translate3d(-8vw, 75vh, 0) scale(0.95) rotate(-4deg);
+  }
+}
+
+@keyframes jellyDrift {
+  0%   { margin-left: 0; }
+  50%  { margin-left: 6vw; }
+  100% { margin-left: 0; }
+}
+
+@keyframes jellyGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 22px rgba(120,210,255,0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 36px rgba(120,210,255,0.45));
+  }
+}
+
